@@ -4,12 +4,14 @@ import tkinter as tk
 from datetime import datetime
 from PIL import Image, ImageTk
 import tkintermapview as tkmv
+import customtkinter as ctk
+
 
 class MapaController:
     def __init__(self):
         self.bd_imagens = None
         self.view = None
-        self.root = tk.Tk()
+        self.root = ctk.CTk()
 
     def inicializa(self, model, view):
         '''
@@ -28,7 +30,7 @@ class MapaController:
 
     def executa(self):
         '''Método principal da interface pública da classe.'''
-        tk.mainloop() 
+        self.root.mainloop()
 
     def busca_botao(self):
         children_widgets = self.view.frame_busca.winfo_children()
