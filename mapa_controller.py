@@ -20,14 +20,14 @@ class MapaController:
         '''
         self.bd_imagens = model
         self.view = view
-        self._configura()   
+        self._configura()
 
     def _configura(self):
         self.processa_imagens()
-
-        self.view.frame_busca.button_buscar['command'] = lambda: self.busca_botao()
-        self.view.frame_busca.button_redefinir['command'] = lambda: self.redefinir_busca()
-
+        self.view.frame_busca.button_buscar.configure(
+            command=self.busca_botao)
+        self.view.frame_busca.button_redefinir.configure(
+            command=self.redefinir_busca)
     def executa(self):
         '''Método principal da interface pública da classe.'''
         self.root.mainloop()
@@ -70,27 +70,29 @@ class MapaController:
 
     
     def clica_marcador(self,event):
-      dado_img = ImageTk.PhotoImage(Image.open(event.data.nome()).resize(size=(150, 150)))
-      marcador = event.data
-      self.view.frame_dados.var_nome.set(os.path.basename(event.data.nome()))
-      self.view.frame_dados.label_img = tk.Label(self.view.frame_dados, image=dado_img)
-      self.view.frame_dados.label_img.image = dado_img
-      self.view.frame_dados.label_img.grid(row=0, rowspan=5, column=2, sticky=tk.W)
+        dado_img = ImageTk.PhotoImage(Image.open(event.data.nome()).resize(size=(150, 150)))
+        marcador = event.data
+        self.view.frame_dados.var_nome.set(os.path.basename(event.data.nome()))
+        self.view.frame_dados.label_img = tk.Label(self.view.frame_dados, image=dado_img)
+        self.view.frame_dados.label_img.image = dado_img
+        self.view.frame_dados.label_img.grid(
+            row=0, rowspan=6, column=2, sticky=tk.W)
 
-      latitude = marcador.latitude
-      longitude = marcador.longitude
-      self.view.frame_dados.var_coords.set(f"{latitude} {longitude}")
+        latitude = marcador.latitude
+        longitude = marcador.longitude
+        self.view.frame_dados.var_lat.set(latitude)
+        self.view.frame_dados.var_longitude.set(longitude)
 
-      data = marcador.data
-      if data:
-        self.view.frame_dados.var_data.set(data)
-      else:
-          self.view.frame_dados.var_data.set("N/A")
+        data = marcador.data
+        if data:
+            self.view.frame_dados.var_data.set(data)
+        else:
+            self.view.frame_dados.var_data.set("N/A")
 
-      pais = tkmv.convert_coordinates_to_country(latitude, longitude)
-      cidade = tkmv.convert_coordinates_to_city(latitude, longitude)
-      self.view.frame_dados.var_pais.set(pais)
-      self.view.frame_dados.var_cidade.set(cidade)
+        pais = tkmv.convert_coordinates_to_country(latitude, longitude)
+        cidade = tkmv.convert_coordinates_to_city(latitude, longitude)
+        self.view.frame_dados.var_pais.set(pais)
+        self.view.frame_dados.var_cidade.set(cidade)
 
     def processa_imagens(self):
         self.bd_imagens.processa()
