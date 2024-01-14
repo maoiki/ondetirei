@@ -73,7 +73,7 @@ class MapaController:
             self.view.frame_dados, image=dado_img, text="")
         self.view.frame_dados.label_img.image = dado_img
         self.view.frame_dados.label_img.grid(
-            row=0, rowspan=6, column=2, sticky=tk.W)
+            row=0, rowspan=6, column=2, sticky=tk.W, padx=10, pady=5)
 
         latitude = marcador.latitude
         longitude = marcador.longitude

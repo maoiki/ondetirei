@@ -11,8 +11,8 @@ class MapaView:
         self._inicializa_gui()
     
     def _inicializa_gui(self):
-        self.root.geometry('800x600')
-        self.root.minsize(800,600)
+        self.root.geometry('900x600')
+        self.root.minsize(900,600)
         self.root.title('Onde tirei?')
 
         ctk.set_default_color_theme("green")

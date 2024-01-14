@@ -76,10 +76,10 @@ class FrameDados(ctk.CTkFrame):
     def __init__(self, container):
         super().__init__(container)
 
-        self.configure(width=400)
-        self.pack(side=tk.BOTTOM, fill=tk.X)
+        self.configure(width=450)
+        self.pack(side=tk.BOTTOM, fill=tk.X, padx=10, pady=5)
+        self.columnconfigure(1, minsize=150, weight=1)
         self.columnconfigure(2, minsize=150)
-        self.columnconfigure(1, minsize=100, weight=1)
 
         self.__create_widgets()
 
@@ -109,23 +109,24 @@ class FrameDados(ctk.CTkFrame):
         self.label_pais = ctk.CTkLabel(self, text='País:')
         self.dado_pais = ctk.CTkLabel(self, textvariable=self.var_pais)
 
-        self.label_nome.grid(row=0, column=0, sticky=tk.W)
-        self.dado_nome.grid(row=0, column=1)
+        self.label_nome.grid(row=0, column=0, sticky=tk.W, padx=10)
+        self.dado_nome.grid(row=0, column=1, padx=10)
 
-        self.label_data.grid(row=1, column=0, sticky=tk.W)
-        self.dado_data.grid(row=1, column=1)
+        self.label_data.grid(row=1, column=0, sticky=tk.W, padx=10)
+        self.dado_data.grid(row=1, column=1, padx=10)
 
-        self.label_lat.grid(row=2, column=0, sticky=tk.W)
-        self.dado_lat.grid(row=2, column=1)
+        self.label_lat.grid(row=2, column=0, sticky=tk.W, padx=10)
+        self.dado_lat.grid(row=2, column=1, padx=10)
 
-        self.label_longitude.grid(row=3, column=0, sticky=tk.W)
-        self.dado_longitude.grid(row=3, column=1)
+        self.label_longitude.grid(
+            row=3, column=0, sticky=tk.W, padx=10)
+        self.dado_longitude.grid(row=3, column=1, padx=10)
 
-        self.label_cidade.grid(row=4, column=0, sticky=tk.W)
-        self.dado_cidade.grid(row=4, column=1)
+        self.label_cidade.grid(row=4, column=0, sticky=tk.W, padx=10)
+        self.dado_cidade.grid(row=4, column=1, padx=10)
 
-        self.label_pais.grid(row=5, column=0, sticky=tk.W)
-        self.dado_pais.grid(row=5, column=1)
+        self.label_pais.grid(row=5, column=0, sticky=tk.W, padx=10)
+        self.dado_pais.grid(row=5, column=1, padx=10)
 
         # Imagem
 
@@ -136,4 +137,5 @@ class FrameDados(ctk.CTkFrame):
         self.label_img = ctk.CTkLabel(self, image=dado_img, text='')
         self.label_img.image = dado_img
 
-        self.label_img.grid(row=0, rowspan=6, column=2, sticky=tk.W)
+        self.label_img.grid(row=0, rowspan=6, column=2,
+                            sticky=tk.W, padx=10, pady=5)
