@@ -33,33 +33,28 @@ class MapaController:
         self.root.mainloop()
 
     def busca_botao(self):
-        children_widgets = self.view.frame_busca.winfo_children()
-        input_values = []
+        opcao_selecionada = self.view.frame_busca.combobox_busca.get()
+        valor_input1 = self.view.frame_busca.input_1.get()
+        valor_input2 = self.view.frame_busca.input_2.get()
 
-        if self.view.frame_busca.combobox_busca.get() == 'Selecione um valor':
+        if opcao_selecionada == 'Selecione um valor':
             messagebox.showerror('Erro', 'Selecione uma opção válida antes de buscar.')
 
+        elif valor_input1 == "" or (opcao_selecionada == 'Data' and valor_input2 == ""):
+            messagebox.showerror('Erro', 'informe um valor')
+        
+        else:
+            if opcao_selecionada == 'Data':
+                self.busca_por_data(valor_input1, valor_input2)
 
-        # procura os inputs filhos do frame_busca dinamicamente
-        for child_widget in children_widgets:
-            if child_widget.winfo_class() == 'Entry' and child_widget.winfo_ismapped():
-                if child_widget.get() == "": 
-                    messagebox.showerror('Erro', 'informe um valor')
-                else: 
-                    input_values.append(child_widget.get())
+            elif opcao_selecionada == 'Nome':
+                self.busca_por_nome(valor_input1)
 
+            elif opcao_selecionada == 'Cidade':
+                self.busca_por_cidade(valor_input1)
 
-        if self.view.frame_busca.combobox_busca.get() == 'Data':
-            self.busca_por_data(input_values[0], input_values[1])
-
-        elif self.view.frame_busca.combobox_busca.get() == 'Nome':
-            self.busca_por_nome(input_values[0])
-
-        elif self.view.frame_busca.combobox_busca.get() == 'Cidade':
-            self.busca_por_cidade(input_values[0])
-
-        elif self.view.frame_busca.combobox_busca.get() == 'País':
-            self.busca_por_pais(input_values[0])
+            elif opcao_selecionada == 'País':
+                self.busca_por_pais(valor_input1)
 
     def adicionar_marcador(self, latitude, longitude, image_path, data):
         img = Image.open(image_path)

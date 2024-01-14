@@ -1,7 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
-from PIL import Image, ImageTk
-
+from PIL import Image
 
 class FrameBusca(ctk.CTkFrame):
     '''
@@ -19,59 +18,39 @@ class FrameBusca(ctk.CTkFrame):
         '''
         Método para alterar quais campos são mostrados
         '''
-        if self.combobox_busca.get() == 'Data':
-            self.label_datainicial.grid(row=1, column=0, sticky=tk.W)
-            self.input_datainicial.grid(row=1, column=1)
 
-            self.label_datafinal.grid(row=1, column=2, sticky=tk.W)
-            self.input_datafinal.grid(row=1, column=3)
+        if self.combobox_busca.get() != 'Selecione um valor':
+            self.label_1.grid(row=1, column=0, sticky=tk.W)
+            self.input_1.grid(row=1, column=1)
         else:
-            if self.label_datafinal.winfo_ismapped():
-                self.label_datainicial.grid_forget()
-                self.input_datainicial.grid_forget()
-                self.label_datafinal.grid_forget()
-                self.input_datafinal.grid_forget()
+            self.label_1.grid_forget()
+            self.input_1.grid_forget()
+
+        if self.combobox_busca.get() == 'Data':
+            self.label_1.configure(text="Data inicial:")
+
+            self.label_2.grid(row=1, column=2, sticky=tk.W)
+            self.input_2.grid(row=1, column=3)
+        else:
+            if self.label_2.winfo_ismapped():
+                self.label_2.grid_forget()
+                self.input_2.grid_forget()
 
         if self.combobox_busca.get() == 'Nome':
-            self.label_nome.grid(row=1, column=0, sticky=tk.W)
-            self.input_nome.grid(row=1, column=1)
-        else:
-            if self.label_nome.winfo_ismapped():
-                self.label_nome.grid_forget()
-                self.input_nome.grid_forget()
+            self.label_1.configure(text="Nome:")
 
         if self.combobox_busca.get() == 'Cidade':
-            self.label_cidade.grid(row=1, column=0, sticky=tk.W)
-            self.input_cidade.grid(row=1, column=1)
-        else:
-            if self.label_cidade.winfo_ismapped():
-                self.label_cidade.grid_forget()
-                self.input_cidade.grid_forget()
+            self.label_1.configure(text="Cidade:")
 
         if self.combobox_busca.get() == 'País':
-            self.label_pais.grid(row=1, column=0, sticky=tk.W)
-            self.input_pais.grid(row=1, column=1)
-        else:
-            if self.label_pais.winfo_ismapped():
-                self.label_pais.grid_forget()
-                self.input_pais.grid_forget()
+            self.label_1.configure(text="País:")
 
     def __create_widgets(self):
         # Cria inputs/labels para busca
-        self.label_datainicial = ctk.CTkLabel(self, text='Data inicial:')
-        self.input_datainicial = ctk.CTkEntry(self)
-
-        self.label_datafinal = ctk.CTkLabel(self, text='Data final:')
-        self.input_datafinal = ctk.CTkEntry(self)
-
-        self.label_nome = ctk.CTkLabel(self, text='Nome:')
-        self.input_nome = ctk.CTkEntry(self)
-
-        self.label_cidade = ctk.CTkLabel(self, text='Cidade:')
-        self.input_cidade = ctk.CTkEntry(self)
-
-        self.label_pais = ctk.CTkLabel(self, text='País:')
-        self.input_pais = ctk.CTkEntry(self)
+        self.label_1 = ctk.CTkLabel(self, text='Data inicial:')
+        self.label_2 = ctk.CTkLabel(self, text='Data final:')
+        self.input_1 = ctk.CTkEntry(self)
+        self.input_2 = ctk.CTkEntry(self)
 
         # Cria combobox que altera quais inputs aparecem
         self.combobox_label = ctk.CTkLabel(self, text='Buscar por:')
