@@ -19,7 +19,7 @@ class MapaView:
 
         self.map = tkmv.TkinterMapView(self.root, corner_radius=0)
         self.map.set_tile_server("https://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga", max_zoom=22)
-        self.map.set_address('Brasil') 
+        self.map.set_address('Rio Grande do Norte, Brasil')
         self.map.set_zoom(15)
 
         self.map.pack(side=tk.LEFT, expand=True, fill=tk.BOTH)

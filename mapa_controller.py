@@ -70,10 +70,12 @@ class MapaController:
 
     
     def clica_marcador(self,event):
-        dado_img = ImageTk.PhotoImage(Image.open(event.data.nome()).resize(size=(150, 150)))
+        img = Image.open(event.data.nome())
+        dado_img = ctk.CTkImage(light_image=img, size=(150, 150))
         marcador = event.data
         self.view.frame_dados.var_nome.set(os.path.basename(event.data.nome()))
-        self.view.frame_dados.label_img = tk.Label(self.view.frame_dados, image=dado_img)
+        self.view.frame_dados.label_img = ctk.CTkLabel(
+            self.view.frame_dados, image=dado_img, text="")
         self.view.frame_dados.label_img.image = dado_img
         self.view.frame_dados.label_img.grid(
             row=0, rowspan=6, column=2, sticky=tk.W)
