@@ -9,8 +9,8 @@ class FrameBusca(ctk.CTkFrame):
 
     def __init__(self, container):
         super().__init__(container)
-        self.configure(width=400)
-        self.pack(side=tk.TOP, fill=tk.X)
+        self.configure(width=450)
+        self.pack(side=tk.TOP, fill=tk.X, padx=10, pady=5)
 
         self.__create_widgets()
 
@@ -19,9 +19,9 @@ class FrameBusca(ctk.CTkFrame):
         Método para alterar quais campos são mostrados
         '''
 
-        if self.combobox_busca.get() != 'Selecione um valor':
-            self.label_1.grid(row=1, column=0, sticky=tk.W)
-            self.input_1.grid(row=1, column=1)
+        if self.combobox_busca.get() != 'Selecione':
+            self.label_1.grid(row=1, column=0, padx=10, pady=5)
+            self.input_1.grid(row=1, column=1, padx=10, pady=5)
         else:
             self.label_1.grid_forget()
             self.input_1.grid_forget()
@@ -29,8 +29,8 @@ class FrameBusca(ctk.CTkFrame):
         if self.combobox_busca.get() == 'Data':
             self.label_1.configure(text="Data inicial:")
 
-            self.label_2.grid(row=1, column=2, sticky=tk.W)
-            self.input_2.grid(row=1, column=3)
+            self.label_2.grid(row=2, column=0, padx=10, pady=5)
+            self.input_2.grid(row=2, column=1, padx=10, pady=5)
         else:
             if self.label_2.winfo_ismapped():
                 self.label_2.grid_forget()
@@ -54,18 +54,18 @@ class FrameBusca(ctk.CTkFrame):
 
         # Cria combobox que altera quais inputs aparecem
         self.combobox_label = ctk.CTkLabel(self, text='Buscar por:')
-        combobox_busca_values = ['Selecione um valor',
+        combobox_busca_values = ['Selecione',
                                  'Data', 'Nome', 'Cidade', 'País']
         self.combobox_busca = ctk.CTkComboBox(self, values=combobox_busca_values, command=self.altera_entries)
 
-        self.combobox_label.grid(row=0, column=0)
-        self.combobox_busca.grid(row=0, column=1)
+        self.combobox_label.grid(row=0, column=0, padx=10, pady=5)
+        self.combobox_busca.grid(row=0, column=1, padx=10, pady=5)
 
         self.button_buscar = ctk.CTkButton(self, text='Buscar')
         self.button_redefinir = ctk.CTkButton(self, text='Redefinir')
 
-        self.button_buscar.grid(row=2, column=0),
-        self.button_redefinir.grid(row=2, column=1)
+        self.button_buscar.grid(row=3, column=0, padx=10, pady=5),
+        self.button_redefinir.grid(row=3, column=1, padx=10, pady=5)
 
 
 class FrameDados(ctk.CTkFrame):

@@ -37,7 +37,7 @@ class MapaController:
         valor_input1 = self.view.frame_busca.input_1.get()
         valor_input2 = self.view.frame_busca.input_2.get()
 
-        if opcao_selecionada == 'Selecione um valor':
+        if opcao_selecionada == 'Selecione':
             messagebox.showerror('Erro', 'Selecione uma opção válida antes de buscar.')
 
         elif valor_input1 == "" or (opcao_selecionada == 'Data' and valor_input2 == ""):
