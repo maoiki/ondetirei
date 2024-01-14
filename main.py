@@ -4,7 +4,7 @@ from bd_imagens import BDImagens
 
 def main():
     controller = MapaController()
-    caminho_dataset = "./dataset1/dataset1/"
+    caminho_dataset = "./db/"
     model = BDImagens(caminho_dataset)
     view = MapaView(controller.root)
 
